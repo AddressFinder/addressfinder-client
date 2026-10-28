@@ -1,6 +1,8 @@
-# Publishes to npm on a v* tag, through npm trusted publishing (OIDC): no token
-# is stored anywhere. The package's trusted publisher on npmjs.com must name
-# this repository and this workflow file.
+# Stages a release on npm on a v* tag, through npm trusted publishing (OIDC):
+# no token is stored anywhere. Staged, not published: the trusted publisher on
+# npmjs.com allows `npm stage publish` only, so nothing reaches customers until
+# a maintainer runs `npm stage approve` with 2FA. The publisher must name this
+# repository (owner `AddressFinder`, case-sensitive) and this workflow file.
 name: Publish
 
 on:
@@ -28,4 +30,4 @@ jobs:
           registry-url: https://registry.npmjs.org
       - run: npm ci
       - run: npm run build
-      - run: npm publish
+      - run: npm stage publish
