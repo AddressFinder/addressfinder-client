@@ -1,6 +1,6 @@
 # @addressfinder/addressfinder-client
 
-The session client for the [Addressfinder](https://addressfinder.com) V4 API, for pages that call it with a publishable key (`pk_...`). Use it to build your own address UI on the V4 API. `@addressfinder/addressfinder-js` uses it too.
+The session client for the [Addressfinder](https://addressfinder.com) V4 API, for pages that call it with a publishable key (`pk_...`). Use it to build your own address UI on the V4 API.
 
 It exchanges the publishable key for a short-lived session token, sends that token with every lookup, and starts a new session when the API refuses the old one.
 
@@ -46,42 +46,11 @@ try {
 * A lookup the API refuses with `1030` or `1024` starts a new session and is retried once.
 * A session start has 6 seconds to answer. After one fails, no new start is tried for 30 seconds (`SESSION_RETRY_DELAY`); lookups in that time reject with the same error.
 * `client.get` rejects with an `ApiRequestError` carrying the API's `code` and the HTTP `status`, or with an `AbortError` when your signal fires.
-
-## Browser fingerprint
-
-Each session start sends a fingerprint so the API can link one visit's sessions and tell automation from a person. The API stores only a keyed hash of it. It is made of these signals, all read from the browser, none of them random or stored:
-
-1. `navigator.webdriver`
-2. The time zone
-3. `navigator.platform`
-4. Screen width
-5. Screen height
-6. `devicePixelRatio`
-7. `navigator.hardwareConcurrency`
-8. `navigator.languages`
-9. Whether the user agent is HeadlessChrome
-10. The number of plugins
-11. Whether the window's outer width is 0
-
-Under server-side rendering there is no browser, so no fingerprint is sent.
+* Each session start also sends browser characteristics, such as screen size and time zone, which the API uses to detect automated traffic.
 
 ## Browser support
 
 [Baseline widely available](https://web.dev/baseline). The package uses `fetch`, `AbortController` and ES2022, and imports cleanly under SSR.
-
-## Development
-
-Node 24 (see `.nvmrc`).
-
-```sh
-npm install
-npm run check   # typecheck, lint (including the browser compat check), test, build
-```
-
-Releases:
-
-1. `npm version <patch|minor|major>` on `main`, then `git push origin main --follow-tags`. The `v*` tag makes GitHub Actions stage the version on npm through trusted publishing. Staged versions aren't installable yet.
-2. Signed in to npm as the `addressfinder` account, find the staged version with `npm stage list @addressfinder/addressfinder-client`, then publish it with `npm stage approve <stage-id>`, which asks for 2FA. `npm stage reject <stage-id>` discards it instead.
 
 ## Licence
 
