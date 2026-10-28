@@ -1,0 +1,22 @@
+# Typecheck, lint (including the browser compat check), test and build.
+# Runs on every pull request, and is called by publish.yml before a release.
+name: Check
+
+on:
+  pull_request:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run check
