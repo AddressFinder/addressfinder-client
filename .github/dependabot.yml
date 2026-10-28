@@ -1,0 +1,19 @@
+# Weekly update PRs. The package has no runtime dependencies, so these are
+# dev tooling and Actions; one grouped PR each keeps the noise down.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      dev-tooling:
+        patterns: ['*']
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns: ['*']

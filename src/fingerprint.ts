@@ -1,17 +1,15 @@
 /**
- * The browser's fingerprint, sent with every session start so the API can
- * link one visit's sessions and tell automation from a person. The client
+ * The browser's fingerprint, sent with every session start. The client
  * computes it alone; callers never supply it.
  *
- * A raw string the API only ever HMACs, so the recipe is the prefix: change a
- * signal and the prefix moves with it. Every signal is stable for one browser -
- * nothing random, nothing a window resize changes - and each has a fixed slot,
- * empty when the browser does not offer it, so no signal shifts another's
- * position.
+ * The recipe is the prefix: change a signal and the prefix moves with it.
+ * Every signal is stable for one browser - nothing random, nothing a window
+ * resize changes - and each has a fixed slot, empty when the browser does not
+ * offer it, so no signal shifts another's position.
  *
- * The `v1` recipe is shared with apiSession.js in addressfinder-api, so the two
- * must match signal for signal: docs/adr/0001. The only file in the package
- * that reads the browser. `undefined` under SSR, and the parameter is then
+ * The `v1` recipe is shared with other Addressfinder libraries, so they must
+ * match signal for signal: docs/adr/0001. The only file in the package that
+ * reads the browser. `undefined` under SSR, and the parameter is then
  * left off.
  */
 const RECIPE = 'v1'
