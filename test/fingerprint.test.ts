@@ -35,8 +35,8 @@ describe('the browser fingerprint', () => {
   it('is the v1 recipe: eleven signals in a fixed order', async () => {
     browser()
 
-    // Pinned, because the recipe is shared with apiSession.js in
-    // addressfinder-api: see docs/adr/0001.
+    // Pinned, because other libraries send the same recipe: see
+    // docs/adr/0001.
     expect(await fingerprint()).toBe('v1:0|Pacific/Auckland|MacIntel|1920|1080|2|8|en-NZ,en|0|5|0')
   })
 

@@ -1,6 +1,6 @@
 # Addressfinder client
 
-The browser-side session client for the Addressfinder V4 API. It turns a publishable key into a session and makes lookups on it, for `addressfinder-js` and for customers building their own UI.
+The browser-side session client for the Addressfinder V4 API. It turns a publishable key into a session and makes lookups on it, for Addressfinder's own widgets and for customers building their own UI.
 
 ## Language
 
@@ -29,7 +29,7 @@ The string naming the library and version that made a request, sent as `ca`.
 _Avoid_: user agent
 
 **Fingerprint**:
-A string of stable browser signals sent at a session start, prefixed with its recipe, so the API can link a visit's sessions and tell automation from a person. Computed by the client alone; callers never supply it.
+A string of stable browser signals sent at a session start, prefixed with its recipe. Computed by the client alone; callers never supply it.
 _Avoid_: device ID, browser ID
 
 **Recipe**:

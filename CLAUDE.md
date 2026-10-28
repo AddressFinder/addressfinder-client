@@ -1,12 +1,13 @@
 # addressfinder-client
 
-Node 24 on the host (`.nvmrc`), unlike addressfinder-js, which runs in Docker. `npm run check` is what CI runs.
+This repo is public: write every file for an outside reader. Names, paths and internals of private Addressfinder repos stay out of it; the `af-knowledge:platform-map` skill holds them.
+
+Node 24 on the host (`.nvmrc`); `npm run check` is what CI runs.
 
 ## Related code
 
-- **Consumer**: `../addressfinder-js` depends on this package. A change to an export or to session behaviour needs a matching change there.
-- **Session endpoint**: the API's rules for a session start (a required `ca`, at most 100 characters) live in `../addressfinder-api/app/use_cases/sessions/issue_session_token.rb`.
-- **Fingerprint**: the `v1` recipe is shared with `apiSession.js` in addressfinder-api. Read `docs/adr/0001-v1-fingerprint-recipe-is-a-shared-contract.md` before changing `src/fingerprint.ts`.
+- **Other repos**: this package's consumers and the API's session rules live in private repos. `af-knowledge:platform-map` lists what a change here drags in.
+- **Fingerprint**: read `docs/adr/0001-v1-fingerprint-recipe-is-a-shared-contract.md` before changing `src/fingerprint.ts`.
 
 ## Agent skills
 

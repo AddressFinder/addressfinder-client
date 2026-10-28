@@ -1,7 +1,7 @@
 import { defineConfig } from 'tsup'
 
 // No script-tag build: a page using a script tag gets this package bundled
-// inside addressfinder-js's hosted build.
+// inside the hosted build of the library that uses it.
 export default defineConfig({
   entry: { index: 'src/index.ts' },
   format: ['esm', 'cjs'],

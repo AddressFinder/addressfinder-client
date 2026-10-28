@@ -54,7 +54,7 @@ describe('the API client session', () => {
     createApiClient({
       baseUrl: 'https://api.example.test',
       key: 'pk_test',
-      clientAgent: () => 'Addressfinder.js/9.9.9',
+      clientAgent: () => 'MyCheckout/9.9.9',
       onSessionError: onError
     })
 
@@ -75,7 +75,7 @@ describe('the API client session', () => {
     expect(start?.init?.headers).toBeUndefined()
     expect(start?.init?.body).toBeInstanceOf(URLSearchParams)
     expect(Object.fromEntries(start?.init?.body as URLSearchParams)).toEqual({
-      key: 'pk_test', ca: 'Addressfinder.js/9.9.9'
+      key: 'pk_test', ca: 'MyCheckout/9.9.9'
     })
   })
 
@@ -158,7 +158,7 @@ describe('the API client session', () => {
 
     const [lookup] = lookups(calls)
     expect(lookup?.url.searchParams.get('ses')).toBe('token-1')
-    expect(lookup?.url.searchParams.get('ca')).toBe('Addressfinder.js/9.9.9')
+    expect(lookup?.url.searchParams.get('ca')).toBe('MyCheckout/9.9.9')
     expect(lookup?.url.searchParams.get('q')).toBe('wil')
     expect(lookup?.url.searchParams.has('key')).toBe(false)
     expect(lookup?.url.searchParams.has('format')).toBe(false)
