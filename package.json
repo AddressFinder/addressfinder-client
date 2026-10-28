@@ -1,0 +1,55 @@
+{
+  "name": "@addressfinder/addressfinder-client",
+  "version": "0.1.0",
+  "description": "Session client for the Addressfinder V4 API, for pages using a publishable key",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AddressFinder/addressfinder-client.git"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "browserslist": [
+    "baseline widely available"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src test",
+    "check": "npm run typecheck && npm run lint && npm run test && npm run build",
+    "version": "perl -pi -e \"s/^export const VERSION = .*/export const VERSION = '$npm_package_version'/\" src/version.ts && git add src/version.ts"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@types/node": "^24.19.2",
+    "eslint": "^9.39.5",
+    "eslint-plugin-compat": "^7.0.2",
+    "tsup": "^8.5.1",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.72.1",
+    "vitest": "^2.1.9"
+  }
+}
