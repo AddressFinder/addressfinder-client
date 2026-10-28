@@ -1,6 +1,6 @@
 {
   "name": "@addressfinder/addressfinder-client",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Session client for the Addressfinder V4 API, for pages using a publishable key",
   "license": "MIT",
   "repository": {
