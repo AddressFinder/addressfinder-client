@@ -39,14 +39,17 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src test",
-    "check": "npm run typecheck && npm run lint && npm run test && npm run build",
-    "version": "perl -pi -e \"s/^export const VERSION = .*/export const VERSION = '$npm_package_version'/\" src/version.ts && git add src/version.ts"
+    "check": "npm run typecheck && npm run lint && npm run test && npm run build && npm run lint:package",
+    "version": "perl -pi -e \"s/^export const VERSION = .*/export const VERSION = '$npm_package_version'/\" src/version.ts && git add src/version.ts",
+    "lint:package": "attw --pack . && publint"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
     "@eslint/js": "^9.39.5",
     "@types/node": "^24.19.2",
     "eslint": "^9.39.5",
     "eslint-plugin-compat": "^7.0.2",
+    "publint": "^0.3.25",
     "tsup": "^8.5.1",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.72.1",
