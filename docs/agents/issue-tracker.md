@@ -9,6 +9,7 @@ Issues and specs for this repo live in Linear, in the **ADF** team ("Addressfind
 - **List issues**: `list_issues` filtered by `team: "ADF"` plus `label`, `state`, `assignee` or `query` as needed.
 - **Comment on an issue**: `save_comment` with the issue id and `body`.
 - **Apply / remove labels**: `save_issue` with the issue `id` and `addLabels` / `removeLabels`, which leave the issue's other labels alone. Check `list_issue_labels` first and reuse an existing label rather than creating a duplicate.
+- **Keep the description current**: when a change reverses a decision recorded in an issue's description, update the description in the same step. Reviewers read it as the spec.
 - **Close**: `save_issue` setting `state` to Done (or Canceled for won't-do), after a `save_comment` explaining why.
 
 Identifiers are `ADF-<number>`. Branches are named after the issue, and commit messages start with the uppercase identifier (`ADF-1234 ...`).
