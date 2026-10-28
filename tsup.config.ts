@@ -7,6 +7,8 @@ export default defineConfig({
   format: ['esm', 'cjs'],
   target: 'es2022',
   dts: true,
-  sourcemap: true,
+  // No maps: the output is unminified, so they add little for debugging, and
+  // they would publish every source comment. Revisit if the output is ever minified.
+  sourcemap: false,
   clean: true
 })
