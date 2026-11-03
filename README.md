@@ -46,7 +46,6 @@ try {
 * A lookup the API refuses with `1030` or `1024` starts a new session and is retried once.
 * A session start has 6 seconds to answer. After one fails, no new start is tried for 30 seconds (`SESSION_RETRY_DELAY`); lookups in that time reject with the same error.
 * `client.get` rejects with an `ApiRequestError` carrying the API's `code` and the HTTP `status`, or with an `AbortError` when your signal fires.
-* Each session start also sends browser characteristics, such as screen size and time zone, which the API uses to detect automated traffic.
 
 ## Browser support
 

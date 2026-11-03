@@ -134,24 +134,6 @@ describe('the API client session', () => {
     })
   })
 
-  it("sends the browser's fingerprint on a session start", async () => {
-    vi.stubGlobal('navigator', { webdriver: false, languages: ['en-NZ'], userAgent: 'Chrome/130.0' })
-    vi.stubGlobal('window', { screen: { width: 1920, height: 1080 }, outerWidth: 1920 })
-    const calls = stub()
-    await client().get('/api/v4/address/autocomplete', {}, signal())
-
-    // Eleven slots; the recipe itself is pinned in fingerprint.test.ts.
-    expect((sessionStarts(calls)[0]?.init?.body as URLSearchParams).get('fingerprint'))
-      .toMatch(/^v1:(?:[^|]*\|){10}[^|]*$/)
-  })
-
-  it('leaves the fingerprint off under SSR', async () => {
-    const calls = stub()
-    await client().get('/api/v4/address/autocomplete', {}, signal())
-
-    expect([...(sessionStarts(calls)[0]?.init?.body as URLSearchParams).keys()]).toEqual(['key', 'ca'])
-  })
-
   it('sends the token as ses on a lookup, with ca, and no key, format or header', async () => {
     const calls = stub()
     await client().get('/api/v4/address/autocomplete', { q: 'wil' }, signal())

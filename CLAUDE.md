@@ -7,7 +7,6 @@ Node 24 on the host (`.nvmrc`); `npm run check` is what CI runs.
 ## Related code
 
 - **Other repos**: this package's consumers and the API's session rules live in private repos. `af-knowledge:platform-map` lists what a change here drags in.
-- **Fingerprint**: read `docs/adr/0001-v1-fingerprint-recipe-is-a-shared-contract.md` before changing `src/fingerprint.ts`.
 
 ## Agent skills
 
