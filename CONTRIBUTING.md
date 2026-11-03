@@ -11,6 +11,6 @@ npm run check   # typecheck, lint (including the browser compat check), test, bu
 
 ## Releases
 
-1. `npm version <patch|minor|major>` on `main`, then `git push origin main --follow-tags`. The `v*` tag makes GitHub Actions stage the version on npm through trusted publishing. Staged versions aren't installable yet.
+1. The release PR bumps the version (`npm version <patch|minor|major> --no-git-tag-version`) and adds a `CHANGELOG.md` entry for what integrators will see. On `main` after it merges, tag it (`git tag -a v<version> -m "v<version>"`) and `git push origin main --follow-tags`. The `v*` tag makes GitHub Actions stage the version on npm through trusted publishing. Staged versions aren't installable yet.
 2. Signed in to npm as the `addressfinder` account, find the staged version with `npm stage list @addressfinder/addressfinder-client`, then publish it with `npm stage approve <stage-id>`, which asks for 2FA. `npm stage reject <stage-id>` discards it instead.
 3. Check the release with `npm view @addressfinder/addressfinder-client dist-tags`, which reads the registry. The npm website can take a while to show a new version. Then `npm logout`.

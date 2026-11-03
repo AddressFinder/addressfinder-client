@@ -17,15 +17,13 @@ export default tseslint.config(
 
   {
     // The package must import cleanly under SSR, which a stray DOM reference
-    // breaks only in a customer's build. fingerprint.ts alone reads the
-    // browser, behind a guard.
+    // breaks only in a customer's build.
     files: ['src/**/*.ts'],
-    ignores: ['src/fingerprint.ts'],
     rules: {
       'no-restricted-globals': ['error',
         ...['document', 'window', 'navigator', 'screen', 'localStorage', 'sessionStorage'].map((name) => ({
           name,
-          message: 'Only src/fingerprint.ts may read the browser, so the package imports cleanly under SSR.'
+          message: 'src must not read the browser, so the package imports cleanly under SSR.'
         }))
       ]
     }

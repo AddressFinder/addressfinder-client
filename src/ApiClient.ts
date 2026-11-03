@@ -1,5 +1,4 @@
 import { ApiRequestError, isAbortError } from './errors.js'
-import { fingerprint } from './fingerprint.js'
 import { VERSION } from './version.js'
 
 /**
@@ -69,8 +68,8 @@ const MAX_AGENT_LENGTH = 100
 const START_AGAIN = new Set(['1030', '1024'])
 
 /**
- * Thin wrapper over fetch, holding one browser session. No DOM outside
- * fingerprint.ts: this runs in Node, which keeps the package importable under SSR.
+ * Thin wrapper over fetch, holding one browser session. No DOM: this runs in
+ * Node too, which keeps the package importable under SSR.
  *
  * The key is swapped for a token at `POST /api/session`, and every lookup
  * carries the token as the `ses` URL parameter. Neither request sends a custom
@@ -138,8 +137,6 @@ export function createApiClient ({
   const requestToken = async (): Promise<string> => {
     const body = new URLSearchParams({ key })
     body.set('ca', agent())
-    const print = fingerprint()
-    if (print !== undefined) body.set('fingerprint', print)
 
     // Its own controller: a lookup that is abandoned must not cancel the
     // session the other lookups are waiting on.

@@ -17,7 +17,7 @@ The short-lived token the API issues at a session start, carried on every lookup
 _Avoid_: access token, JWT, `ses`
 
 **Session start**:
-The exchange of a publishable key, client agent and fingerprint for a session token.
+The exchange of a publishable key and client agent for a session token.
 _Avoid_: handshake, login, auth
 
 **Lookup**:
@@ -27,10 +27,3 @@ _Avoid_: query, search, call
 **Client agent**:
 The string naming the library and version that made a request, sent as `ca`.
 _Avoid_: user agent
-
-**Fingerprint**:
-A string of stable browser signals sent at a session start, prefixed with its recipe. Computed by the client alone; callers never supply it.
-_Avoid_: device ID, browser ID
-
-**Recipe**:
-The fixed list and order of signals a fingerprint prefix (such as `v1`) stands for.
